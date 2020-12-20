@@ -1,28 +1,32 @@
 <template>
     <div>
-
+        <navbar></navbar>
     </div>
 </template>
 
 <script>
-
     import 'bootstrap/dist/css/bootstrap.min.css'
     import 'jquery/src/jquery.js'
     import 'bootstrap/dist/js/bootstrap.min.js'
 
+    import Navbar from "@/components/Navbar";
+
     export default {
         name: 'App',
+        components: {
+            Navbar
+        }
 
     }
 </script>
 
 <style>
-    #app {
-        font-family: Avenir, Helvetica, Arial, sans-serif;
-        -webkit-font-smoothing: antialiased;
-        -moz-osx-font-smoothing: grayscale;
-        text-align: center;
-        color: #2c3e50;
-        margin-top: 60px;
+    * {
+        font-family: 'Poppins', sans-serif;
+        border-radius: 0 !important;
+    }
+    body {
+
+        background-color: #f5f3fe;
     }
 </style>
