@@ -23,7 +23,6 @@
                                name="password" type="password" placeholder="password"
                                class="form-control">
                         <small class="text-danger" :key="error" v-for="error in errors.password">{{ error }}</small>
-
                     </div>
                     <div class="form-group">
                         <button @click="registerUser()" class="btn btn-success form-control" :disabled="loading">
@@ -63,9 +62,11 @@
                     password: this.password,
                 })
                     .then(response => {
+                        const user = response.data
                         this.loading = false
-                        localStorage.setItem('authUser', JSON.stringify(response.data))
-                        this.$router.push('home')
+                        localStorage.setItem('authUser', JSON.stringify(user))
+                        this.$root.authUser = user
+                        this.$router.push('/')
                     })
                     .catch(({response}) => {
                         this.loading = false

@@ -29,6 +29,7 @@
         font-family: 'Poppins', sans-serif;
         border-radius: 0 !important;
     }
+
     body {
 
         background-color: #f5f3fe;
