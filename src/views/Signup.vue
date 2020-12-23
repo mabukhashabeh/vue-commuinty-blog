@@ -26,7 +26,7 @@
                     </div>
                     <div class="form-group">
                         <button @click="registerUser()" class="btn btn-success form-control" :disabled="loading">
-                            <font-awesome-icon :icon="['fas', 'spinner']" v-if="loading"></font-awesome-icon>
+                            <i class="fas fa-spinner fa-spin" v-if="loading"></i>
                             {{ !loading ? 'SignUp' : '' }}
                         </button>
                     </div>

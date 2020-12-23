@@ -20,7 +20,7 @@
                     <div class="form-group">
                         <button @click="loginUser()" class="btn btn-success form-control" type="submit"
                                 :disabled="loading">
-                            <font-awesome-icon :icon="['fas', 'spinner']" v-if="loading"></font-awesome-icon>
+                            <i class="fas fa-spinner fa-spin" v-if="loading"></i>
                             {{ !loading ? 'Login' : '' }}
                         </button>
                     </div>
