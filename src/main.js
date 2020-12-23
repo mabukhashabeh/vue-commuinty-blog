@@ -4,7 +4,12 @@ import router from "./router";
 
 Vue.config.productionTip = false
 
+const user = localStorage.getItem('authUser')
+
 new Vue({
-  router,
-  render: h => h(App),
+    router,
+    data: {
+        authUser: user ? {user: JSON.parse(user)} : {}
+    },
+    render: h => h(App),
 }).$mount('#app')
