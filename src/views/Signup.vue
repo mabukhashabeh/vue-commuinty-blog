@@ -38,6 +38,7 @@
 
 <script>
     import Axios from 'axios'
+    import config from "@/config";
 
     export default {
         name: "Signup",
@@ -62,7 +63,7 @@
                 this.submitted = true
                 this.loading = true
 
-                Axios.post("http://localhost:8008/api/v1/user/", {
+                Axios.post(`${config.apiUrl}/api/v1/user`, {
                     name: this.username,
                     email: this.email,
                     password: this.password,
