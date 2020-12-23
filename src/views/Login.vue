@@ -56,11 +56,14 @@
                         this.loading = false
                         localStorage.setItem('authUser', JSON.stringify(response.data))
                         this.$root.authUser = response.data
+                        this.$noty.success("Logged in successfully")
                         this.$router.push('/')
                     })
                     .catch(({response}) => {
                         this.loading = false
                         this.errors = response.data
+                        this.$noty.error("Something went wrong!")
+
 
                         if (response.status === 401) {
                             this.errors = {

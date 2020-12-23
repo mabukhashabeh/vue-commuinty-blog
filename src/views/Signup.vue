@@ -66,10 +66,13 @@
                         this.loading = false
                         localStorage.setItem('authUser', JSON.stringify(user))
                         this.$root.authUser = user
+                        this.$noty.error("Registered successfully.")
+
                         this.$router.push('/')
                     })
                     .catch(({response}) => {
                         this.loading = false
+                        this.$noty.error("Something went wrong!")
                         this.errors = response.data
                     });
             }
