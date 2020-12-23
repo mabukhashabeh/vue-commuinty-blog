@@ -41,6 +41,12 @@
 
     export default {
         name: "Signup",
+        // eslint-disable-next-line no-unused-vars
+        beforeRouteEnter(from, to, next) {
+            if (localStorage.getItem('authUser')) return next({path: "/"})
+
+            return next()
+        },
         data() {
             return {
                 username: '',

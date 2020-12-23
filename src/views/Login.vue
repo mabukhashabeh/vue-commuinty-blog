@@ -18,7 +18,8 @@
                         <small class="text-danger" :key="error" v-for="error in errors.password">{{ error }}</small>
                     </div>
                     <div class="form-group">
-                        <button @click="loginUser()" class="btn btn-success form-control" type="submit" :disabled="loading">
+                        <button @click="loginUser()" class="btn btn-success form-control" type="submit"
+                                :disabled="loading">
                             <font-awesome-icon :icon="['fas', 'spinner']" v-if="loading"></font-awesome-icon>
                             {{ !loading ? 'Login' : '' }}
                         </button>
@@ -34,6 +35,13 @@
 
     export default {
         name: "Login",
+        // eslint-disable-next-line no-unused-vars
+        beforeRouteEnter(from, to, next) {
+            if (localStorage.getItem('authUser')) return next({path: "/"})
+
+            return next()
+        },
+
         data() {
             return {
                 email: '',
