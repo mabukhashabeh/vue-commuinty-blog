@@ -8,7 +8,7 @@
         <div class="loader text-center mt-5" v-else>
             <i class="fas fa-3x fa-spin fa-spinner"></i>
         </div>
-        <div class="d-flex my-4 justify-content-center" v-if="articles.data === undefined">
+        <div class="d-flex my-4 justify-content-center" v-if="articles.data !== undefined">
             <button @click="getPrevArticles()" :disabled="articles.prev_page_url === null"
                     class="btn btn-outline-primary paginator mr-5">Prev
             </button>

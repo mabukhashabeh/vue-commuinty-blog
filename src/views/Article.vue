@@ -3,7 +3,7 @@
         <div class="row">
             <div class="col-md-10 offset-md-1">
                 <div class="card" v-show="contentLoaded">
-                    <img :src="imgUrl" @load="imageLoaded=true">
+                    <img :src="article.image_url" @load="imageLoaded=true">
                     <div class="card-body">
                         <h1 class="card-title text-center my-3">{{ article.title }}</h1>
                         <div v-html="article.content">
@@ -34,7 +34,6 @@
         data() {
             return {
                 article: {},
-                imgUrl: "https://picsum.photos/900/420",
                 imageLoaded: false,
                 articleLoaded: false
             }

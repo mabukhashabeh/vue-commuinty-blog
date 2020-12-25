@@ -70,7 +70,7 @@
                         this.loading = false
                         localStorage.setItem('authUser', JSON.stringify(user))
                         this.$root.authUser = user
-                        this.$noty.error("Registered successfully.")
+                        this.$noty.success("Registered successfully.")
 
                         this.$router.push('/')
                     })
