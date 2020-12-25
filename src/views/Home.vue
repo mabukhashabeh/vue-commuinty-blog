@@ -9,7 +9,7 @@
 <script>
     import Axios from "axios";
     import config from "@/config";
-    import Article from "../components/Article";
+    import Article from "@/components/Article";
 
     export default {
         name: "Home",

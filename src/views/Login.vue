@@ -33,16 +33,12 @@
 <script>
     import Axios from 'axios'
     import config from "@/config";
+    import {anonymousUserRequiredMixin} from '@/mixins';
 
     export default {
         name: "Login",
         // eslint-disable-next-line no-unused-vars
-        beforeRouteEnter(from, to, next) {
-            if (localStorage.getItem('authUser')) return next({path: "/"})
-
-            return next()
-        },
-
+        mixins: [anonymousUserRequiredMixin],
         data() {
             return {
                 email: '',
