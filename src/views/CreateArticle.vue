@@ -22,7 +22,10 @@
                                 button-class="btn btn-danger"
                                 @change="onChange" />
                         <div class="text-center">
-                            <button @click="createArticle()" class="btn-success btn btn-lg mt-3">Create Article</button>
+                            <button :disabled="loading" @click="createArticle()" class="btn-success btn mt-3">
+                                <i class="fas fa-spin fa-spinner" v-if="loading"></i>
+                                {{ loading ? 'Creating...' : 'Create Category' }}
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -50,7 +53,8 @@
                 title:"",
                 image: null,
                 categories: [],
-                category: null
+                category: null,
+                loading: false
             }
         },
         methods: {
@@ -58,18 +62,45 @@
                 this.image = image;
             },
             createArticle() {
-                if (! this.image || !this.content || !this.title || !this.category) {
+                if ([this.image, this.content, this.title , this.category].includes(null)) {
                     this.$noty.error("Please fill out all of fields.")
 
                     return
 
                 }
+
                 const form = new FormData();
                 form.append('file', this.image);
                 form.append('upload_preset', process.env.VUE_APP_CLOUDINARY_PRESET);
                 form.append('api_key', process.env.VUE_APP_CLOUDINARY_API_KEY);
+
+                this.loading = true
                 Axios.post(process.env.VUE_APP_CLOUDINARY_URL, form)
-                    .then(res => console.log(res));
+                    .then(response =>
+                        Axios.post(
+                            `${config.apiUrl}/api/v1/articles`,
+                            {
+                                title: this.title,
+                                content: this.content,
+                                category_id: this.category,
+                                user_id: this.$root.authUser.user.id,
+                                image_url: response.data.secure_url
+                            }
+                        )
+                            .then(() => {
+                                this.loading = false;
+                                this.$noty.success("Article created successfully.");
+                                this.$router.push("/");
+                            })
+                            .catch(() => {
+                                this.loading = false;
+                                this.$noty.error("Oops ! Something went wrong.");
+                            })
+                    )
+                    .catch(() => {
+                        this.loading = false;
+                        this.$noty.error("Oops ! Something went wrong.");
+                    });
             },
             getCategories() {
                 const categories = localStorage.getItem("categories");
