@@ -7,9 +7,14 @@ import 'vuejs-noty/dist/vuejs-noty.css'
 
 import VueDisqus from 'vue-disqus'
 
+import wysiwyg from "vue-wysiwyg";
+import "vue-wysiwyg/dist/vueWysiwyg.css";
+
 Vue.use(VueDisqus, {
     shortname: 'vue-community-blog'
 })
+
+Vue.use(wysiwyg, {});
 
 Vue.use(VueNoty, {
     timeout: 1500,
