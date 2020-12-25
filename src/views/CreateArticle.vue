@@ -17,8 +17,11 @@
 </template>
 
 <script>
+    import {loginRequiredMixin} from '@/mixins';
+
     export default {
         name: "CreateArticle",
+        mixins: [loginRequiredMixin],
         data(){
             return {
                 content: ""
