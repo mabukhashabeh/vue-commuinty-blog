@@ -10,7 +10,7 @@
                             {{ article.content }}
                         </div>
 
-                        <div class='comments'>
+                        <div class='comments my-3'>
                             <Disqus/>
                         </div>
                     </div>
