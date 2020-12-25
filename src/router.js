@@ -4,11 +4,12 @@ import Router from 'vue-router'
 import Login from "./views/Login";
 import Signup from "./views/Signup";
 import Home from "./views/Home";
+import Article from "./views/Article";
 
 Vue.use(Router)
 
 const router = new Router({
-    mode:'history',
+    mode: 'history',
     routes: [
         {
             path: '/login',
@@ -21,6 +22,10 @@ const router = new Router({
         {
             path: '/',
             component: Home
+        },
+        {
+            path: '/articles/:id',
+            component: Article
         }
     ]
 })

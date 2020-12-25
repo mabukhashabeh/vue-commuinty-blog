@@ -8,7 +8,7 @@ import 'vuejs-noty/dist/vuejs-noty.css'
 Vue.use(VueNoty, {
     timeout: 1500,
     progressBar: true,
-    layout: 'topRight'
+    layout: 'bottomRight'
 })
 Vue.config.productionTip = false
 
