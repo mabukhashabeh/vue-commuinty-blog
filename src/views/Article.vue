@@ -9,6 +9,10 @@
                         <div class="div">
                             {{ article.content }}
                         </div>
+
+                        <div class='comments'>
+                            <Disqus/>
+                        </div>
                     </div>
                 </div>
                 <div class="loader text-center" v-show="!contentLoaded">

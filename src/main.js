@@ -5,6 +5,12 @@ import router from "./router";
 import VueNoty from 'vuejs-noty'
 import 'vuejs-noty/dist/vuejs-noty.css'
 
+import VueDisqus from 'vue-disqus'
+
+Vue.use(VueDisqus, {
+    shortname: 'vue-community-blog'
+})
+
 Vue.use(VueNoty, {
     timeout: 1500,
     progressBar: true,
