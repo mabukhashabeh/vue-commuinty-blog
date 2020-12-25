@@ -5,7 +5,7 @@
                 <div class="card my-5">
                     <div class="card-body">
                         <label for="">Title</label>
-                        <input type="text" placeholder="Title" class="mb-3 form-control">
+                        <input type="text" placeholder="Title"  v-model="title" class="mb-3 form-control">
                         <label for="">Content</label>
                         <wysiwyg v-model="content" />
                         <label for="" class="mt-3">Image</label>
@@ -39,6 +39,7 @@
         data() {
             return {
                 content: "",
+                title:"",
                 image: null
             }
         },
@@ -47,13 +48,22 @@
                 this.image = image;
             },
             createArticle() {
+                if (! this.image || !this.content || !this.title) {
+                    this.$noty.error("Please fill out all of fields.")
+
+                    return
+
+                }
                 const form = new FormData();
                 form.append('file', this.image);
-                form.append('upload_preset', 'ml_default');
-                form.append('api_key', '375722845933325');
-                Axios.post('https://api.cloudinary.com/v1_1/dybppjpw4/image/upload', form)
+                form.append('upload_preset', process.env.VUE_APP_CLOUDINARY_PRESET);
+                form.append('api_key', process.env.VUE_APP_CLOUDINARY_API_KEY);
+                Axios.post(process.env.VUE_APP_CLOUDINARY_URL, form)
                     .then(res => console.log(res));
             }
+        },
+        mounted() {
+            console.log(process.env)
         }
     }
 </script>
