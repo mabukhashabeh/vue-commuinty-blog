@@ -8,13 +8,18 @@
         <div class="loader text-center mt-5" v-else>
             <i class="fas fa-3x fa-spin fa-spinner"></i>
         </div>
-        <div class="d-flex my-4 justify-content-center">
+        <div class="d-flex my-4 justify-content-center" v-if="articles.data === undefined">
             <button @click="getPrevArticles()" :disabled="articles.prev_page_url === null"
                     class="btn btn-outline-primary paginator mr-5">Prev
             </button>
             <button @click="getNextArticles()" :disabled="articles.next_page_url === null"
                     class="btn btn-outline-primary paginator ml-5">Next
             </button>
+        </div>
+        <div class="card my-3" role="alert" v-else>
+            <div class="card-body">
+                Nothing to show !
+            </div>
         </div>
     </div>
 </template>
