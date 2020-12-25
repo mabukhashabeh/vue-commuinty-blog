@@ -6,8 +6,7 @@
                     <img :src="imgUrl" @load="imageLoaded=true">
                     <div class="card-body">
                         <h1 class="card-title text-center my-3">{{ article.title }}</h1>
-                        <div class="div">
-                            {{ article.content }}
+                        <div v-html="article.content">
                         </div>
 
                         <div class='comments my-3'>
