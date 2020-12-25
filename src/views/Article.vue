@@ -2,8 +2,8 @@
     <div class="container my-5">
         <div class="row">
             <div class="col-md-10 offset-md-1">
-                <div class="card" v-if="!loading">
-                    <img height="420px" src="https://picsum.photos/900/420" alt="" class="card-img-top">
+                <div class="card" v-show="contentLoaded">
+                    <img :src="imgUrl" @load="imageLoaded=true">
                     <div class="card-body">
                         <h1 class="card-title text-center my-3">{{ article.title }}</h1>
                         <div class="div">
@@ -11,7 +11,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="loader text-center" v-else>
+                <div class="loader text-center" v-show="!contentLoaded">
                     <i class="fas fa-5x fa-spin fa-spinner"></i>
                 </div>
             </div>
@@ -31,7 +31,9 @@
         data() {
             return {
                 article: {},
-                loading: true
+                imgUrl: "https://picsum.photos/900/420",
+                imageLoaded: false,
+                articleLoaded: false
             }
         },
         methods: {
@@ -39,11 +41,16 @@
                 Axios.get(`${config.apiUrl}/api/v1/articles/${this.$route.params.id}`)
                     .then(response => {
                         this.article = response.data
-                        this.loading = false
+                        this.articleLoaded = true
                     })
                     .catch(({response}) => {
                         console.log(response)
                     });
+            },
+        },
+        computed: {
+            contentLoaded() {
+                return this.imageLoaded && this.articleLoaded
             }
         },
         mounted() {
